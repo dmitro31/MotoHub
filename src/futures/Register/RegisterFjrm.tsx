@@ -3,10 +3,15 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { registerSchema, type RegisterFormData } from "./schemas/auth.schema"
 import { registerUser } from "./api/auth.api"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../../context/Auth.context"
 
 export const RegisterForm = () => {
   const [serverError, setServerError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
+  const navigate = useNavigate();
+
+    const { login } = useAuth();
 
   const {
     register,
@@ -26,6 +31,10 @@ export const RegisterForm = () => {
       })
       localStorage.setItem("token", result.token)
       setSuccess(true)
+      setTimeout(() => {
+        navigate("/")
+      } , 3000)
+      login()
     } catch (error: any) {
       setServerError(error.response?.data?.message || "Помилка сервера")
     }

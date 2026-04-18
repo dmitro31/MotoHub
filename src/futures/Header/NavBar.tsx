@@ -25,6 +25,9 @@ export default function NavBar() {
             <Link to="/profile" className="w-8 h-8 rounded-full bg-blue-50 text-blue-500 text-sm font-medium flex items-center justify-center">
               Профіль
             </Link>
+             <Link to="/add-car" className="h-9 px-4 border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors flex items-center ml-10">
+              Продати авто
+            </Link>
           </>
         ) : (
           <>
